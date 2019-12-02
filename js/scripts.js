@@ -2,5 +2,5 @@
 alert('Hello world');
 
 //Favorite food
-var favoriteFood = Tacos;
-document.write(tacos);
+var favoriteFood = 'Tacos';
+document.write(favoriteFood);
