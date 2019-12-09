@@ -3,13 +3,11 @@ var repository = [
   {name:'Charmander', height: 1.7, type: 'pison'},
   {name:'Primeape', height: 0.5, type: 'grass'},
 ];
-for (var i = 0; i < repository.length; i++) {
-    if(repository[i].height >= 1.7) {
-      document.write('<p>'+ repository[i].name + ' (height: ' +repository[i].height + ') - Wow that\'s big!</p>');
-    } else {
-      document.write('<p>'+ repository[i].name + ' (height: ' +repository[i].height + ')</p>');
-    }
-}
 
-
-//document.write(repository[0].name);
+Object.keys(repository).forEach(function(currentItem) {
+  if(repository[currentItem].height >= 1.7){
+    document.write(repository[currentItem].name + ': ' + repository[currentItem].height + ' - Wow that\'s big!<br>');
+  } else {
+    document.write(repository[currentItem].name + ': ' + repository[currentItem].height + '<br>');
+  }
+});
