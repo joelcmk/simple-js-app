@@ -13,7 +13,21 @@ body {
   font-size: 20px;
 }
 
-
-ul {
+.pokemon-list {
+  padding: 0;
   list-style-type: none;
+}
+
+@media all and (max-width: 500px) {
+  body {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+  }
+
+  .pokemon-button {
+    color: black;
+    background-color: lightblue;
+    width: 300px;
+  }
 }
