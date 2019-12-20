@@ -31,15 +31,18 @@ var pokemonRepository = (function(){
     button.classList.add('pokemon-button');
     $listItem.appendChild(button);
     $pokemonList.appendChild($listItem)
+
+    button.addEventListener('click', function (pokemonName){
+      var pokemonName = repository[pokemon].name;
+      showDetails(pokemonName);
+    });
   }
 
   function showDetails(pokemon){
       console.log(pokemon);
   }
 
-  button.addEventListener('click', function (pokemon){
-    showDetails(pokemon);
-  });
+
 
 })();
 
