@@ -33,6 +33,14 @@ var pokemonRepository = (function(){
     $pokemonList.appendChild($listItem)
   }
 
+  function showDetails(pokemon){
+      console.log(pokemon);
+  }
+
+  button.addEventListener('click', function (pokemon){
+    showDetails(pokemon);
+  });
+
 })();
 
 Object.keys(pokemonRepository.getAll()).forEach(function(currentItem){
