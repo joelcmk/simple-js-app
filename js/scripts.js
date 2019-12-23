@@ -32,12 +32,12 @@ var pokemonRepository = (function(){
 
   function loadDetails(item) {
     var url = item.detailsUrl;
-    return fetch(url).then(function (response){
+    return fetch(url).then(function (response) {
       return response.json();
     }).then(function (details) {
-      item.imageURL = details.sprites.front_default;
+      item.imageUrl = details.sprites.front_default;
       item.height = details.height;
-      item.type = Object.keys(details.types);
+      item.types = Object.keys(details.types);
     }).catch(function (e) {
       console.error(e);
     });
