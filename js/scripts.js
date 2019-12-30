@@ -1,6 +1,7 @@
 var pokemonRepository = (function(){
   var repository = [];
   var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  var $modalContainer = document.querySelector('#modal-container');
 
   function getAll(){
     return repository;
@@ -43,14 +44,6 @@ var pokemonRepository = (function(){
     });
   }
 
-  return {
-    getAll: getAll,
-    add: add,
-    addListItem: addListItem,
-    loadList: loadList,
-    loadDetails: loadDetails
-  }
-
   function addListItem(pokemon){
     var $pokemonList = document.querySelector('.pokemon-list');
     var $listItem = document.createElement('li');
@@ -65,12 +58,68 @@ var pokemonRepository = (function(){
     });
   }
 
+  function showModal(img, name, height) {
+    //Clear all existing modal content
+    $modalContainer.innerHTML = "";
+
+    var modal = document.createElement('div');
+    modal.classList.add('modal');
+
+    // Add the new modal content
+    var closeButtonElement = document.createElement('button');
+    closeButtonElement.classList.add('modal-close');
+    closeButtonElement.innerText = 'Close';
+    closeButtonElement.addEventListener('click', hideModal);
+
+    var imgElement = document.createElement('img');
+    imgElement.setAttribute("src", img);
+
+    var nameElement = document.createElement('h1');
+    nameElement.innerText = name;
+
+    var heightElement = document.createElement('p');
+    heightElement.innerText = 'Height = ' + height;
+
+    modal.appendChild(closeButtonElement);
+    modal.appendChild(imgElement);
+    modal.appendChild(nameElement);
+    modal.appendChild(heightElement);
+    $modalContainer.appendChild(modal);
+
+    $modalContainer.classList.add('is-visible');
+  }
+
+  function hideModal() {
+    $modalContainer.classList.remove('is-visible')
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && $modalContainer.classList.contains('is-visible')) {
+      hideModal();
+    };
+  })
+
+  window.addEventListener('click', (e) => {
+    var target = e.target;
+    if (target === $modalContainer) {
+      hideModal();
+    };
+  })
+
   function showDetails(item) {
-    pokemonRepository.loadDetails(item).then(function () {
-    console.log(item);     });
+    loadDetails(item).then(function () {
+    showModal(item.imageUrl, item.name, item.height);     });
 }
 
 
+ return {
+    getAll: getAll,
+    add: add,
+    showModal: showModal,
+    addListItem: addListItem,
+    loadList: loadList,
+    loadDetails: loadDetails,
+  }
 
 })();
 
