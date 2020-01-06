@@ -58,6 +58,23 @@ var pokemonRepository = (function(){
     });
   }
 
+  function myFunction() {
+    var input, filter, ul, li, button, i, txtValue;
+    input = document.getElementById('myInput');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById('pokemon-list');
+    li = document.getElementsByTagName('li');
+    for (i = 0; i < li.length; i++) {
+        b = li[i].getElementsByTagName('button')[0];
+        txtValue = b.textContent || b.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = '';
+        } else {
+            li[i].style.display = 'none';
+        }
+    }
+}
+
   function showModal(img, name, height) {
     //Clear all existing modal content
     $modalContainer.innerHTML = "";
@@ -116,9 +133,10 @@ var pokemonRepository = (function(){
     getAll: getAll,
     add: add,
     showModal: showModal,
+    loadDetails: loadDetails,
+    myFunction: myFunction,
     addListItem: addListItem,
     loadList: loadList,
-    loadDetails: loadDetails,
   }
 
 })();
